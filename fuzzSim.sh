@@ -1,8 +1,9 @@
 #!/bin/bash
 arg1=$1; arg2=$2;
 offset=36;
-mkdir logdir 2>/dev/null
-filename=~/Library/Logs/CrashReporter/*
+mkdir logdir 2>/dev/null;
+mkdir -p logdir/CrashReports;
+mkdir -p logdir/DiagnosticReports;
 echo [*] Starting simulator.;
 open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app;
 numSet=1;
@@ -22,6 +23,7 @@ if [[ $arg1 ==  "-r" ]]; then
 	echo "[*] Loading : $url...";
 	xcrun simctl openurl $setID $url;
 fi
-sleep 1
-$filename logdir/ 2> /dev/null
+sleep 1;
+cp -rf ~/Library/Logs/CrashReporter/ ./logdir/CrashReports;find ./logdir/CrashReports/* -mtime +1 -exec rm {} \;
+cp -rf ~/Library/Logs/DiagnosticReports/ ./logdir/DiagnosticReports;find ./logdir/DiagnosticReports/* -mtime +1 -exec rm {} \;
 echo "";
