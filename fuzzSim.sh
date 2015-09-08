@@ -24,6 +24,6 @@ if [[ $arg1 ==  "-r" ]]; then
 	xcrun simctl openurl $setID $url;
 fi
 sleep 1;
-cp -rf ~/Library/Logs/CrashReporter/ ./logdir/CrashReports;find ./logdir/CrashReports/* -mtime +1 -exec rm {} \;
-cp -rf ~/Library/Logs/DiagnosticReports/ ./logdir/DiagnosticReports;find ./logdir/DiagnosticReports/* -mtime +1 -exec rm {} \;
-echo "";
+cp -rf ~/Library/Logs/CrashReporter/ ./logdir/CrashReports;
+cp -rf ~/Library/Logs/DiagnosticReports/ ./logdir/DiagnosticReports;
+echo -e "\n";
